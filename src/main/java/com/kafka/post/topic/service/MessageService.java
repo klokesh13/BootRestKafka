@@ -1,4 +1,4 @@
-package com.kafka.service;
+package com.kafka.post.topic.service;
 
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
@@ -15,22 +15,23 @@ public class MessageService {
     @Autowired
     private KafkaTemplate<String, String> kafkaTemplate;
 
-    String topicName="messageTopic";
+    @Value("${kafka.topic}")
+    private String kafkaTopicName;
 
     public String send(String message) {
 
         try{
 
-            kafkaTemplate.send(topicName, message);
+            kafkaTemplate.send(kafkaTopicName, message);
 
         }catch(Exception ex) {
 
             ex.printStackTrace();
 
-            return "Failed to send the message in topic \""+topicName+"\"";
+            return "Failed to send the message in topic \""+kafkaTopicName+"\"";
         }
 
-        return "Message has been sent successfully to topic \""+topicName+"\"";
+        return "Message has been sent successfully to topic \""+kafkaTopicName+"\"";
 
     }
 
@@ -38,11 +39,6 @@ public class MessageService {
 
     @Value("${kafka.bootstrap.servers}")
     private String kafkaBootstrapServers;
-
-
-    @Value("${kafka.topic}")
-    private String kafkaTopicName;
-
 
 
     public String post(String message) {
@@ -67,10 +63,10 @@ public class MessageService {
 
             ex.printStackTrace();
 
-            return "Failed to send the message in topic \""+topicName+"\"";
+            return "Failed to send the message in topic \""+kafkaTopicName+"\"";
         }
 
-        return "Message has been sent successfully to topic \""+topicName+"\"";
+        return "Message has been sent successfully to topic \""+kafkaTopicName+"\"";
 
     }
 

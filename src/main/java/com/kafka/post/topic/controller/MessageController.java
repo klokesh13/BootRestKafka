@@ -1,13 +1,12 @@
-package com.kafka.controller;
+package com.kafka.post.topic.controller;
 
-import com.kafka.service.MessageService;
+
+import com.kafka.post.topic.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.logging.Logger;
 
 @RestController
 @RequestMapping("/Apis")
@@ -33,5 +32,15 @@ public class MessageController {
 
         return response;
     }
+
+    @GetMapping("/test")
+    public String testMethod(@RequestParam("message") String message) {
+
+        String response = "Success";
+
+        return response;
+    }
+
+
 
 }

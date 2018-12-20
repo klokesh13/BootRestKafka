@@ -1,5 +1,6 @@
 package com.kafka.post.topic.service;
 
+import com.kafka.post.topic.constants.KafkaProperties;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,14 +45,14 @@ public class MessageService {
     public String post(String message) {
 
         Properties producerProperties = new Properties();
-        producerProperties.put("bootstrap.servers", kafkaBootstrapServers);
-        producerProperties.put("acks", "all");
-        producerProperties.put("retries", 0);
-        producerProperties.put("batch.size", 16384);
-        producerProperties.put("linger.ms", 1);
-        producerProperties.put("buffer.memory", 33554432);
-        producerProperties.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
-        producerProperties.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
+        producerProperties.put(KafkaProperties.BOOTSTRAP_SERVERS_KEY, kafkaBootstrapServers);
+        producerProperties.put(KafkaProperties.BOOTSTRAP_ACKS_KEY, KafkaProperties.BOOTSTRAP_ACKS_VALUE);
+        producerProperties.put(KafkaProperties.BOOTSTRAP_RETRIES_KEY, 0);
+        producerProperties.put(KafkaProperties.BOOTSTRAP_BATCH_SIZE_KEY, 16384);
+        producerProperties.put(KafkaProperties.BOOTSTRAP_LINGER_MS_KEY, 1);
+        producerProperties.put(KafkaProperties.BOOTSTRAP_BUFFER_MEMEORY_KEY, 33554432);
+        producerProperties.put(KafkaProperties.BOOTSTRAP_SERIALIZER_KEY, KafkaProperties.BOOTSTRAP_SERIALIZER_VALUE);
+        producerProperties.put(KafkaProperties.BOOTSTRAP_SERIALIZER_VALUE_KEY, KafkaProperties.BOOTSTRAP_SERIALIZER_VALUE_VALUE);
 
         KafkaProducer<String, String> producer = new KafkaProducer<>(producerProperties);
 

@@ -1,4 +1,4 @@
-# RestPostMessageKafkaTopic
+# BootRestKafka
 
 The purpose of the project is to implement Rest Api by using Spring Boot Application and by using these API's, Users can feed the messages to post it into Kafka Topic.
 
